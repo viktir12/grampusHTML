@@ -8,22 +8,57 @@
 </head>
 <body>
 
-  <!-- БАННЕР -->
-  <section class="banner">
-    <div class="banner-content">
-      <h1>ecoclean</h1>
-      <p>ECOCLEAN — это премиальная автомойка, созданная с заботой об окружающей среде. Бережно очищает и защищает ваш автомобиль, не нанося вреда природе.</p>
-      <a href="#" class="btn-pink">Перейти к заказу</a>
+<!-- БАННЕР СО СЛАЙДЕРОМ -->
+<section class="banner">
+  <div class="slider-container">
+    <!-- Слайд 1 -->
+    <div class="slide active">
+      <div class="slide-content">
+        <h1>ecoclean</h1>
+        <p>ECOCLEAN — это премиальная автомойка, созданная с заботой об окружающей среде. Бережно очищает и защищает ваш автомобиль, не нанося вреда природе.</p>
+        <a href="#" class="btn-pink">Перейти к заказу</a>
+      </div>
+      <div class="slide-image">
+        <img src="ecoclean.png" alt="Продукты KRYTEX">
+      </div>
     </div>
-    <div class="banner-images">
-      <img src="ecoclean.png" alt="Продукты KRYTEX">
+
+    <!-- Слайд 2 -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1>TAR REMOVER</h1>
+        <p>Удаляет смолу, битум и другие загрязнения без повреждения лакокрасочного покрытия. Эффективно и безопасно.</p>
+        <a href="#" class="btn-pink">Подробнее</a>
+      </div>
+      <div class="slide-image">
+        <img src="tar_remover.png" alt="Tar Remover">
+      </div>
     </div>
+
+    <!-- Слайд 3 -->
+    <div class="slide">
+      <div class="slide-content">
+        <h1>INTERIOR PROTECT</h1>
+        <p>Защита салона автомобиля от УФ-излучения, пыли и загрязнений. Продлевает срок службы материалов интерьера.</p>
+        <a href="#" class="btn-pink">Подробнее</a>
+      </div>
+      <div class="slide-image">
+        <img src="interior_protect.png" alt="Interior Protect">
+      </div>
+    </div>
+  </div>
+
+  <!-- Навигация по слайдам -->
+  <div class="slider-nav">
+    <button class="nav-btn prev"><i class="fas fa-chevron-left"></i></button>
     <div class="dots">
-      <div class="dot active"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
+      <div class="dot active" data-slide="0"></div>
+      <div class="dot" data-slide="1"></div>
+      <div class="dot" data-slide="2"></div>
     </div>
-  </section>
+    <button class="nav-btn next"><i class="fas fa-chevron-right"></i></button>
+  </div>
+</section>
 
   <!-- ФИЧИ ПОД БАННЕРОМ -->
   <div class="feature-list">
@@ -102,6 +137,51 @@
 
   </div>
 </section>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    let currentSlide = 0;
 
+    // Функция показа слайда
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+      currentSlide = index;
+    }
+
+    // Переключение по клику на точки
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const slideIndex = parseInt(dot.getAttribute('data-slide'));
+        showSlide(slideIndex);
+      });
+    });
+
+    // Кнопка "Назад"
+    prevBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    });
+
+    // Кнопка "Вперёд"
+    nextBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    });
+
+    // Автоматическая смена слайдов каждые 5 секунд (опционально)
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }, 5000);
+  });
+</script>
 </body>
 </html>

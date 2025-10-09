@@ -205,46 +205,72 @@
       font-size: 1.2rem;
     }
 
-    /* АДАПТИВНОСТЬ */
-    @media (max-width: 1024px) {
-      .banner {
-        height: 400px;
-        flex-direction: column-reverse;
-        padding: 40px 5%;
-      }
-      .banner-content {
-        max-width: 100%;
-        text-align: center;
-        margin-bottom: 30px;
-      }
-      .banner-images {
-        position: static;
-        transform: none;
-        width: 100%;
-        max-width: 100%;
-        margin-top: 30px;
-      }
-      .why-us-container {
-        gap: 20px;
-      }
-      .card {
-        width: 100%;
-        max-width: 400px;
-      }
-    }
+   /* === АДАПТИВНОСТЬ === */
+@media (max-width: 768px) {
+  .slide.active {
+    flex-direction: column;
+    text-align: center;
+  }
 
-    @media (max-width: 768px) {
-      .section-title {
-        font-size: 2rem;
-      }
-      .banner-content h1 {
-        font-size: 2.2rem;
-      }
-      .feature-list {
-        flex-direction: column;
-        gap: 15px;
-      }
-    }
+  .slide-content {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .slide-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .slide-content p {
+    font-size: 0.95rem;
+    padding: 0 10px;
+  }
+
+  .slide-image {
+    margin-top: 20px;
+    order: 2;
+  }
+
+  .slide-content {
+    order: 1;
+  }
+
+  .slider-nav {
+    margin-top: 20px;
+  }
+
+  .nav-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+
+  .banner {
+    padding: 20px 15px;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-content h1 {
+    font-size: 1.6rem;
+  }
+
+  .slide-content p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .btn-pink {
+    padding: 9px 18px;
+    font-size: 0.95rem;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+  }
+}
     
     /* СТИЛИ ДЛЯ СЕКЦИИ "ПОЧЕМУ ВЫБИРАЮТ НАС" */
 
@@ -366,3 +392,125 @@
   border: 1px solid #eee;
   border-radius: 8px;
 }
+
+/* Основной стиль баннера */
+.banner {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: #111;
+  color: white;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  position: relative;
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.slide.active {
+  display: flex;
+  opacity: 1;
+}
+
+.slide-content {
+  flex: 1;
+  max-width: 500px;
+}
+
+.slide-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.slide-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #ccc;
+}
+
+.btn-pink {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #ff6b6b;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-pink:hover {
+  background: #ff5252;
+}
+
+.slide-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Навигация слайдера */
+.slider-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.nav-btn {
+  background: rgba(236, 218, 218, 0.1);
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.3s;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dot.active {
+  background: #ff6b6b;
+}
+
